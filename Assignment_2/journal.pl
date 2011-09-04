@@ -3,20 +3,13 @@ journal('A',['X', 'Y', 'Z']).
 journal('B',['X', 'Z']).
 journal('C',['X', 'J']).
 
-
-find([X|_], X).
-find([_|T], X):-
-    find(T, X).
-
-sub_list([E], L):-
-    find(L, E).
+sub_list([], _).
 sub_list([H|T], L):-
-    find(L, H),
+    member(H, L),
     sub_list(T, L).
 
 find_journal(SubList, Journal):-
-    journal(Name, JournalSubjectList),
-    sub_list(SubList, JournalSubjectList),
-    Journal = Name.
+    journal(Journal, JournalSubjectList),
+    sub_list(SubList, JournalSubjectList).
     
     
