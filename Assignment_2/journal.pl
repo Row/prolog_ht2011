@@ -14,15 +14,9 @@ sub_list([H|T], L):-
     find(L, H),
     sub_list(T, L).
 
-init_list([H|T],X):-
-    X is [H|T].
-init_list(_,X):-
-    X is [].
-
-find_journal(SubList, Journals):-
+find_journal(SubList, Journal):-
     journal(Name, JournalSubjectList),
     sub_list(SubList, JournalSubjectList),
-    init_list(Journals, Journal1),
-    Journals is [Name|Journal1].
+    Journal = Name.
     
     
