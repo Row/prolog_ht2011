@@ -11,16 +11,28 @@
 %%%
 
 
-% prefix(+Prefix, +List)
+% prefix_list(+Prefix, +List)
 %  Succeeds if the list Prefix is the prefix of List
 % Example of use:
-% ?- prefix([a,b],[a,b,c]).
+% ?- prefix_list([a,b],[a,b,c]).
 % true.
-% ?- prefix([a,b],[b,c,d]).
+% ?- prefix_list([a,b],[b,c,d]).
 % false.
-prefix([], _).
-prefix([H|T0], [H|T1]):-
-    prefix(T0, T1).
+prefix_list([], _).
+prefix_list([H|T0], [H|T1]):-
+    prefix_list(T0, T1).
+
+% prefix(+Prefix, +String)
+%  Succeeds if the atom Prefix is the prefix of the atom String
+% Example of use:
+% ?- prefix(ab,abc).
+% true.
+% ?- prefix(ab,bcd]).
+% false.
+prefix(Prefix, String):-
+    name(Prefix, ListPrefix),
+    name(String, ListString),
+    prefix_list(ListPrefix,ListString).
 
 % beginning(+List, +Prefix, -NewList).
 %  NewList contains the atoms from List which has the prefix Prefix.
@@ -29,12 +41,10 @@ prefix([H|T0], [H|T1]):-
 % NewList = [abc, aa].     
 beginning([], _, []).
 beginning([H|T], Prefix, [H|Rest]):-
-    name(H, ListH),
-    name(Prefix, ListPrefix),
-    prefix(ListPrefix,ListH),
-    !,
+    prefix(Prefix, H),
     beginning(T, Prefix, Rest).
-beginning([_|T], Prefix, Rest):-
+beginning([H|T], Prefix, Rest):-
+    \+ prefix(Prefix, H),
     beginning(T, Prefix, Rest).
     
 
