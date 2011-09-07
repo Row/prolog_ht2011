@@ -6,10 +6,8 @@
 %
 % Task 3 from lab 4
 %  Define a relation between two lists where one list should contain all the
-%  all the elements in the first list that starts with a given combination
-%  of letters.
+%  elements in the first list that starts with a given combination of letters.
 %%%
-
 
 % prefix_list(+Prefix, +List)
 %  Succeeds if the list Prefix is the prefix of List
@@ -46,5 +44,24 @@ beginning([H|T], Prefix, [H|Rest]):-
 beginning([H|T], Prefix, Rest):-
     \+ prefix(Prefix, H),
     beginning(T, Prefix, Rest).
-    
 
+%
+% Task 4a from lab 4
+% Write a program that deletes elements in a list using no cut.
+%%%
+
+% delete(Elem, List, NewList)
+
+%
+% Task 4b from lab 4
+% Write a program that deletes elements in a list using green cut.
+%%%
+
+% delete(Elem, List, NewList)
+
+% 
+% Task 4c from lab 4
+% Write a program that deletes elements in a list using red cut. 
+%%%
+
+% delete(Elem, List, NewList)
