@@ -51,17 +51,39 @@ beginning([H|T], Prefix, Rest):-
 %%%
 
 % delete(Elem, List, NewList)
+delete(_, [], []).
+delete(Elem, [Elem|T], Rest):-
+    delete(Elem, T, Rest).
+delete(Elem, [H|T], [H|Rest]):-
+    \+ Elem = H,
+    delete(Elem, T, Rest).
+    
 
 %
 % Task 4b from lab 4
 % Write a program that deletes elements in a list using green cut.
 %%%
 
-% delete(Elem, List, NewList)
+% delete_green(Elem, List, NewList)
+delete_green(_, [], []).
+delete_green(Elem, [Elem|T], Rest):-
+    !,
+    delete_green(Elem, T, Rest).
+delete_green(Elem, [H|T], [H|Rest]):-
+    \+ Elem = H,
+    !,
+    delete_green(Elem, T, Rest).
+
 
 % 
 % Task 4c from lab 4
 % Write a program that deletes elements in a list using red cut. 
 %%%
 
-% delete(Elem, List, NewList)
+% delete_red(Elem, List, NewList)
+delete_red(_, [], []).
+delete_red(Elem, [Elem|T], Rest):-
+    !,
+    delete_red(Elem, T, Rest).
+delete_red(Elem, [H|T], [H|Rest]):-
+    delete_red(Elem, T, Rest).
