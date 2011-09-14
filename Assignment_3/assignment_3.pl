@@ -50,7 +50,7 @@ beginning([H|T], Prefix, Rest):-
 % Write a program that deletes elements in a list using no cut.
 %%%
 
-% delete(Elem, List, NewList)
+% delete(+Elem, +List, -NewList)
 %  NewList is List without the elements matching Elem.
 % Example of use:
 %  | ?- delete(a, [a,b,a,b,a,c,a], NewList).
@@ -67,7 +67,7 @@ delete(Elem, [H|T], [H|Rest]):-
 % Write a program that deletes elements in a list using green cut.
 %%%
 
-% delete_green(Elem, List, NewList)
+% delete_green(+Elem, +List, -NewList)
 %  NewList is List without the elements matching Elem.
 % Example of use:
 %  | ?- delete_green(a, [a,b,a,b,a,c,a], NewList).
@@ -86,7 +86,7 @@ delete_green(Elem, [H|T], [H|Rest]):-
 % Write a program that deletes elements in a list using red cut. 
 %%%
 
-% delete_red(Elem, List, NewList)
+% delete_red(+Elem, +List, -NewList)
 %  NewList is List without the elements matching Elem.
 % Example of use:
 %  | ?- delete_red(a, [a,b,a,b,a,c,a], NewList).
