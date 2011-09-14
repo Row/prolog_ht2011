@@ -52,13 +52,15 @@ beginning([H|T], Prefix, Rest):-
 
 % delete(Elem, List, NewList)
 %  NewList is List without the elements matching Elem.
+% Example of use:
+%  | ?- delete(a, [a,b,a,b,a,c,a], NewList).
+%  NewList = [b,b,c]
 delete(_, [], []).
 delete(Elem, [Elem|T], Rest):-
     delete(Elem, T, Rest).
 delete(Elem, [H|T], [H|Rest]):-
     \+ Elem = H,
     delete(Elem, T, Rest).
-    
 
 %
 % Task 4b from lab 4
@@ -67,6 +69,9 @@ delete(Elem, [H|T], [H|Rest]):-
 
 % delete_green(Elem, List, NewList)
 %  NewList is List without the elements matching Elem.
+% Example of use:
+%  | ?- delete_green(a, [a,b,a,b,a,c,a], NewList).
+%  NewList = [b,b,c]
 delete_green(_, [], []).
 delete_green(Elem, [Elem|T], Rest):-
     !,
@@ -76,7 +81,6 @@ delete_green(Elem, [H|T], [H|Rest]):-
     !,
     delete_green(Elem, T, Rest).
 
-
 % 
 % Task 4c from lab 4
 % Write a program that deletes elements in a list using red cut. 
@@ -84,6 +88,9 @@ delete_green(Elem, [H|T], [H|Rest]):-
 
 % delete_red(Elem, List, NewList)
 %  NewList is List without the elements matching Elem.
+% Example of use:
+%  | ?- delete_red(a, [a,b,a,b,a,c,a], NewList).
+%  NewList = [b,b,c]
 delete_red(_, [], []).
 delete_red(Elem, [Elem|T], Rest):-
     !,
